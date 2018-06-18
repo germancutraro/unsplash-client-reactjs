@@ -1,0 +1,48 @@
+.Image-Wrapper {
+  position: relative;
+  display: inline-block;
+  margin: 1rem 2rem 1rem 2rem;
+}
+
+.Image-Wrapper::before {
+  content: '';
+  background-image: linear-gradient(#000, #fff, #000);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  transition: .7s all ease;
+}
+
+.Image-Wrapper:hover .User-Info {
+  display: block;
+  opacity: 1;
+}
+
+.Image-Wrapper:hover::before{
+  opacity: .3;
+}
+
+.User-Info {
+  position: absolute;
+  bottom: 20px;
+  left: 18px;
+  opacity: 0;
+  transition: .7s all ease;
+}
+
+.User-Info-Wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.User-Avatar {
+  border-radius: 100%;
+}
+
+.Username {
+  color: #eaebeb;
+  padding-left: 10px;
+}

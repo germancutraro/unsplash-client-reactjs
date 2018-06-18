@@ -1,0 +1,37 @@
+.SearchBox-Wrapper {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%; */
+}
+
+.SearchBox-Input, .SearchBox-Button {
+  padding: .5rem 1rem;
+  background-color: #fff;
+  border: none;
+  border-radius: 5px;
+  border-left: 0;
+  height: 54px;
+  font-size: 15px;
+  outline: none;
+}
+
+.SearchBox-Button {
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  cursor: pointer;
+}
+
+.SearchBox-Input {
+  color: #111;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  width: 500px;
+}
+
+
+.fa-search {
+  color: #9C9C9C;
+}

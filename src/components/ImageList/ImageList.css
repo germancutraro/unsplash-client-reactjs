@@ -1,0 +1,14 @@
+.Images {
+  width: 100%;
+  display: flex;
+  margin: 3rem auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.notFound, .keyword {
+  text-align: center;
+  padding: 1rem;
+  font-weight: lighter;
+}
+

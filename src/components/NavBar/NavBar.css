@@ -1,0 +1,17 @@
+.NavBar-Wrapper {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  padding: 8px;
+}
+
+.author {
+  color: #999;
+  padding: 8px 1rem;
+  font-size: 15px;
+}
+
