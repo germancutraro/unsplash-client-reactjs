@@ -2,7 +2,7 @@
 
 📷 Unsplash client using React.js
 
-## Instalation
+## Installation
 
 **You must have Node.js installed to use it**
 
