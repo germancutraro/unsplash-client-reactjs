@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import envs from './config';
 // Components
 import ImageList from './components/ImageList/ImageList';
 import NavBar from './components/NavBar/NavBar';
@@ -8,8 +9,7 @@ import SearchBox from './components/SearchBox/SearchBox';
 
 let API = 'https://api.unsplash.com';
 
-const CONFIG =
-  '?page=1&per_page=50&client_id=e64e1a64c02da5f1479b850a6cc6f21206a96220c1c69c922da9e286254bf6fe';
+const CONFIG = `?page=1&per_page=50&client_id=${envs.CLIENT_ID}`;
 
 const App = () => {
   const [images, setImages] = useState([]);
