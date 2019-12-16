@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 // Components
 import ImageList from './components/ImageList/ImageList';
@@ -6,44 +6,46 @@ import NavBar from './components/NavBar/NavBar';
 import Banner from './components/Banner/Banner';
 import SearchBox from './components/SearchBox/SearchBox';
 
-class App extends Component {
+let API = 'https://api.unsplash.com';
 
-  state = {
-    images: [],
-    error: false,
-    notFound: false
-  };
+const CONFIG =
+  '?page=1&per_page=50&client_id=e64e1a64c02da5f1479b850a6cc6f21206a96220c1c69c922da9e286254bf6fe';
 
-  componentDidMount() {
-    axios.get(`https://api.unsplash.com/photos/?page=1&per_page=50&client_id=e64e1a64c02da5f1479b850a6cc6f21206a96220c1c69c922da9e286254bf6fe`)
-        .then( ({ data }) => this.setState({ images: data }))
-        .catch(err => this.setState({ error: true }));
-  }
+const App = () => {
+  const [images, setImages] = useState([]);
+  const [error, setError] = useState(false);
+  const [notFound, setNotFound] = useState(false);
+  const [query, setQuery] = useState('');
 
-  searchHandler = query => { 
+  useEffect(() => {
+    const fetchImages = async () => {
+      let requestURL = API;
+      if (query) requestURL += `/search/photos/${CONFIG}&query=${query}`;
+      else requestURL += `/photos${CONFIG}`;
 
-    this.setState({ query });
+      try {
+        let res = await axios(requestURL);
 
-    axios.get(`https://api.unsplash.com/search/photos?page=1&per_page=50&query=${query}&client_id=e64e1a64c02da5f1479b850a6cc6f21206a96220c1c69c922da9e286254bf6fe`)
-      .then(res => {
-        if (res.data.results.length > 0) 
-          return this.setState({images: res.data.results, notFound: false});
-        this.setState({ notFound: true }); 
-      })
-  };
+        if (query) setImages(res.data.results);
+        else setImages(res.data);
+        setNotFound(false);
+      } catch (err) {
+        setError(err);
+      }
+    };
+    fetchImages();
+  }, [query]);
 
-  render() {
-    if (this.state.error) return <h1 style={{ textAlign: 'center' }}>Error!</h1>
-    return (
-      <div className="App">
-        <NavBar />
-        <Banner>
-          <SearchBox searchHandler={ this.searchHandler } />
-        </Banner>
-        <ImageList images={ this.state.images } notFound={ this.state.notFound } />
-      </div>
-    );
-  }
-}
+  if (error) return <h1 style={{ textAlign: 'center' }}>Error!</h1>;
+  return (
+    <div className='App'>
+      <NavBar />
+      <Banner>
+        <SearchBox searchHandler={query => setQuery(query)} />
+      </Banner>
+      <ImageList images={images} notFound={notFound} />
+    </div>
+  );
+};
 
-export default App;
+export default React.memo(App);

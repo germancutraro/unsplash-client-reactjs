@@ -1,19 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './ImageList.css';
 import Image from '../Image/Image';
 
-class ImageList extends Component {
-  render() {
-    const images = this.props.images.map( (img, i) => <Image {...img} key={ i } />)
-    return (
-      <div className="Images">
-        { this.props.notFound 
-          ? <h1 className="notFound">Not found!</h1> 
-          : images 
-        }
-      </div>
-    );
-  } 
+const ImageList = ({ images, notFound }) => {
+  const outputImages = images.map((img, i) => <Image key={i} {...img} />);
+  return (
+    <div className='Images'>
+      {notFound ? <h1 className='notFound'>Not found!</h1> : outputImages}
+    </div>
+  );
 };
 
-export default ImageList;
+export default React.memo(ImageList);

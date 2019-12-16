@@ -1,32 +1,28 @@
-import React, { Component } from "react";
-import "./SearchBox.css";
+import React, { useState } from 'react';
+import './SearchBox.css';
 
-class SearchBox extends Component {
+const SearchBox = ({ searchHandler }) => {
+  const [value, setValue] = useState('');
 
-  state = {
-    value: ''
-  };
+  const onChangeHandler = ({ target }) => setValue(target.value);
+  const onKeyUp = e => (e.key === 'Enter' ? searchHandler(value) : null);
 
-  onChangeHandler = e => this.setState({ value: e.target.value })
-  onKeyUp = e =>  (e.key === 'Enter') ? this.props.searchHandler(this.state.value) : false;
+  return (
+    <div className='SearchBox-Wrapper'>
+      <button
+        className='SearchBox-Button fa fa-search'
+        onClick={() => searchHandler(value)}
+      ></button>
+      <input
+        type='text'
+        placeholder='Search free high-resolution photos'
+        required
+        className='SearchBox-Input'
+        onChange={onChangeHandler}
+        onKeyUp={onKeyUp}
+      />
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div className="SearchBox-Wrapper">
-
-          <button className="SearchBox-Button fa fa-search" onClick={ () => this.props.searchHandler(this.state.value) }></button>
-          <input
-            type="text"
-            placeholder="Search free high-resolution photos"
-            required
-            className="SearchBox-Input"
-            onChange={ this.onChangeHandler }
-            onKeyUp={ this.onKeyUp }
-          />
-  
-      </div>
-    );
-  }
-}
-
-export default SearchBox;
+export default React.memo(SearchBox);
