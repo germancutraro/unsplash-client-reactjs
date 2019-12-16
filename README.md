@@ -3,7 +3,7 @@
 📷 Unsplash client using React.js
 
 # Requirements
-Create a **config.js** and write:
+Create a **src/config.js** and write:
 
 ```js
 export default {
