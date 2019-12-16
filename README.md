@@ -2,6 +2,15 @@
 
 📷 Unsplash client using React.js
 
+# Requirements
+Create a **config.js** and write:
+
+```js
+export default {
+  CLIENT_ID: *YOUR UNSPLASH CLIENT KEY HERE*
+}
+```
+
 ## Installation
 
 **You must have Node.js installed to use it**
