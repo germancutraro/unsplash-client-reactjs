@@ -30,6 +30,7 @@ npm start
 ## Author
 
 **germancutraro**
+made with [bauticutraro](https://github.com/bauticutraro)
 
 ## Why
 
